@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "L7mV+OHbDwytC6aOK6/gnaPt06CIINUB/4BuSTP8DDfL3udp3H7KLDFTN8nPKlqcx6kmT46jIzFks9DfRoMRuA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\Shared\\Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\agnie\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\agnie\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\agnie\\.nuget\\packages\\system.componentmodel\\4.3.0\\system.componentmodel.4.3.0.nupkg.sha512",
+    "C:\\Users\\agnie\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
+    "C:\\Users\\agnie\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}

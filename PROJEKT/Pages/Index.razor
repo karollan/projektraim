@@ -1,0 +1,91 @@
+﻿@page "/"
+@inject HttpClient Http
+@using Shared.Models  
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<EditForm Model="@rUser" OnValidSubmit="@HandleValidSubmit">
+    <p>
+        <label for="age">Wiek:</label>
+        <InputSelect id="age" @bind-Value="rUser.Age">
+            <option value="< 18"> &lt; 18 </option>
+            <option value="18-26">18-26</option>
+            <option value="27-35">27-35</option>
+            <option value="36-65">36-65</option>
+            <option value=">65">&gt; 65</option>
+        </InputSelect>
+    </p>
+    <p>
+        <label for="gender"> Płeć:</label>
+        <InputSelect id="gender" @bind-Value="rUser.Gender">
+            <option value="M">Mężczyzna</option>
+            <option value="K">Kobieta</option>
+            <option value="I">Nie chcę odpowiadać na to pytanie</option>
+        </InputSelect>
+    </p>
+    <p>
+        <label>
+            Czy jesteś studentem?
+            <InputSelect @bind-Value="rUser.Student_eti">
+                <option value="NS">Nie studiuję</option>
+                <option value="SETI">Jestem studentem ETI na PG</option>
+                <option value="SPG">Jestem studentem innego wydziału PG</option>
+                <option vale="SNPG">Jestem studentem innej uczelni</option>
+            </InputSelect>
+        </label>
+    </p>
+    <p>
+        <label>
+            Wykształcenie:
+            <InputSelect @bind-Value="rUser.Education">
+                <option value="podstawowe">Podstawowe</option>
+                <option value="zasadnicze">Zasadnicze zawodowe</option>
+                <option value="srednie">Średnie</option>
+                <option value="wyzsze">Wyższe</option>
+            </InputSelect>
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Pytania o historię szczepień:
+        </label>
+    </p>
+
+    <button type="submit">Wyślij do bazy danych</button>
+</EditForm>
+
+
+<div>
+    <p class="alert-info">@message</p>
+</div>
+
+@code {
+
+    private User rUser = new User();
+    string message = "";
+
+    protected override void OnInitialized()
+    {
+        rUser.Started_at = DateTime.Now;
+    }
+
+
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            rUser.Completed_at = DateTime.Now;
+            message = "Sending the feedback";
+            var response = await Http.PostAsJsonAsync("/api/AddUser", rUser);
+            message = "Feedback stored in the destination";
+        }
+        catch (Exception ex)
+        {
+            message = "Failed to store your feedback";
+        }
+    }
+}

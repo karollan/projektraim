@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\LudwigVanWanna\source\repos\Projekt\PROJEKT\bin\Release\netstandard2.1\publish\</_PublishTargetUrl>
+    <History>True|2021-04-06T19:45:20.9142930Z;True|2021-04-05T17:14:58.1101836+02:00;True|2021-04-05T17:04:08.2648573+02:00;True|2021-04-05T16:59:29.6763168+02:00;True|2021-04-03T21:19:22.3986993+02:00;</History>
+  </PropertyGroup>
+</Project>
