@@ -1,0 +1,6 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\PROJEKT\bin\Debug\netstandard2.1\wwwroot\" />
+  <ContentRoot BasePath="_content/Blazorise" Path="C:\Users\LudwigVanWanna\.nuget\packages\blazorise\0.9.3.4\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazorise.Charts" Path="C:\Users\LudwigVanWanna\.nuget\packages\blazorise.charts\0.9.3.4\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/MatBlazor" Path="C:\Users\LudwigVanWanna\.nuget\packages\matblazor\2.8.0\build\..\staticwebassets\" />
+</StaticWebAssets>
