@@ -76,6 +76,13 @@ using PROJEKT.Share;
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+using MatBlazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\Pages\Index.razor"
 using Shared.Models;
 
@@ -91,8 +98,10 @@ using Shared.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 57 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\Pages\Index.razor"
+#line 183 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\Pages\Index.razor"
        
+    protected string AnswerHistory;
+    protected string AnswerOpinion;
 
     private User rUser = new User();
     string message = "";

@@ -57,12 +57,132 @@ Welcome to your new app.
     <button type="submit">Wyślij do bazy danych</button>
 </EditForm>
 
+<EditForm Model="@rUser.History" OnValidSubmit="@HandleValidSubmit">
+    <p>
+        <label>
+            Czy szczepiłeś/aś się na ospę wietrzną?
+        </label>
+        <MatRadioGroup GroupName="ospa" @bind-Value="@AnswerHistory" TValue="string">
+            <MatRadioButton Value="@("1")" TValue="string">Tak</MatRadioButton>
+            <MatRadioButton Value="@("0")" TValue="string">Nie</MatRadioButton>
+        </MatRadioGroup>
+    </p>
+
+    <p>
+        <label>
+            Czy kiedykolwiek szczepiłeś/aś się na grypę?
+        </label>
+        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerHistory" TValue="string">
+            <MatRadioButton Value="@("1")" TValue="string">Tak</MatRadioButton>
+            <MatRadioButton Value="@("0")" TValue="string">Nie</MatRadioButton>
+        </MatRadioGroup>
+    </p>
+
+    <p>
+        <label>
+            Czy szczepiłeś/aś się przeciw HPV?
+        </label>
+        <MatRadioGroup GroupName="hpv" @bind-Value="@AnswerHistory" TValue="string">
+            <MatRadioButton Value="@("1")" TValue="string">Tak</MatRadioButton>
+            <MatRadioButton Value="@("0")" TValue="string">Nie</MatRadioButton>
+        </MatRadioGroup>
+    </p>
+
+</EditForm>
+
+<EditForm Model="@rUser.Opinion" OnValidSubmit="@HandleValidSubmit">
+    <p>
+        <label>
+            Jaki jest twój stosunek do szczepień obowiązkowych (odra, świnka, różyczka…)?
+            Oceń w skali od 1 (bardzo pozytywny) do 5 (bardzo negatywny)
+        </label>
+        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
+            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+        </MatRadioGroup>
+    </p>
+
+    <p>
+        <label>
+            Jaki jest twój stosunek do szczepień nieobowiązkowych (grypa, ospa, ...)?
+            Oceń w skali od 1 (bardzo negatywny) do 5 (bardzo pozytywny)
+        </label>
+        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
+            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+        </MatRadioGroup>
+    </p>
+
+    <p>
+        <label>
+            Czy planujesz zaszczepić się na COVID-19?
+        </label>
+        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
+            <MatRadioButton Value="@("SA")" TValue="string">Tak / Już się zaszczepiłem/am</MatRadioButton>
+            <MatRadioButton Value="@("SD")" TValue="string">Nie</MatRadioButton>
+            <MatRadioButton Value="@("NS")" TValue="string">NIe jestem pewny/a</MatRadioButton>
+        </MatRadioGroup>
+    </p>
+
+    <p>
+        <label>
+            Czy martwisz się o bezpieczeństwo i skuteczność szczepionki COVID-19?
+            Oceń w skali od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
+        </label>
+        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
+            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+        </MatRadioGroup>
+    </p>
+
+    <p>
+        <label>
+            Lepiej jest uzyskać odporność poprzez zachorowanie niż szczepienie.
+            Odpowiedź w skali  od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
+        </label>
+        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
+            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+        </MatRadioGroup>
+    </p>
+
+    <p>
+        <label>
+            Ufam informacjom, które otrzymuję na temat szczepionek.
+            Odpowiedź w skali  od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
+        </label>
+        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
+            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+        </MatRadioGroup>
+    </p>
+
+
+</EditForm>
+
 
 <div>
     <p class="alert-info">@message</p>
 </div>
 
 @code {
+    protected string AnswerHistory;
+    protected string AnswerOpinion;
 
     private User rUser = new User();
     string message = "";
