@@ -2,11 +2,14 @@
 @inject HttpClient Http
 @using Shared.Models  
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
 <EditForm Model="@rUser" OnValidSubmit="@HandleValidSubmit">
+
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped" role="progressbar"
+             style="width: @wizard.Progress" aria-valuenow=@wizard.Progress
+             aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
     <p>
         <label for="age">Wiek:</label>
         <InputSelect id="age" @bind-Value="rUser.Age">
@@ -48,129 +51,348 @@ Welcome to your new app.
         </label>
     </p>
 
-    <p>
-        <label>
-            Pytania o historię szczepień:
-        </label>
-    </p>
+    <div>
+        <p>
+            <label>
+                Pytania o historię szczepień:
+            </label>
+        </p>
 
-    <button type="submit">Wyślij do bazy danych</button>
-</EditForm>
+        <p>
+            <label>
+                Czy szczepiłeś/aś się na ospę wietrzną?
+            </label>
+                <MatRadioGroup GroupName="ospa" @bind-Value="@Ospa" TValue="int">
+                    <MatRadioButton Value="@(1)" TValue="int" Style="float:left; margin-right: 5px">Tak</MatRadioButton>
+                    <MatRadioButton Value="@(0)" TValue="int" Style="float:left; margin-right: 5px">Nie</MatRadioButton>
+                </MatRadioGroup>
+        </p>
 
-<EditForm Model="@rUser.History" OnValidSubmit="@HandleValidSubmit">
-    <p>
-        <label>
-            Czy szczepiłeś/aś się na ospę wietrzną?
-        </label>
-        <MatRadioGroup GroupName="ospa" @bind-Value="@AnswerHistory" TValue="string">
-            <MatRadioButton Value="@("1")" TValue="string">Tak</MatRadioButton>
-            <MatRadioButton Value="@("0")" TValue="string">Nie</MatRadioButton>
-        </MatRadioGroup>
-    </p>
+        <p>
+            <label>
+                Czy kiedykolwiek szczepiłeś/aś się na grypę?
+            </label>
+            <MatRadioGroup GroupName="grypa" @bind-Value="@Grypa" TValue="int">
+                <MatRadioButton Value="@(1)" TValue="int" Style="float:left; margin-right: 5px">Tak</MatRadioButton>
+                <MatRadioButton Value="@(0)" TValue="int" Style="float:left; margin-right: 5px">Nie</MatRadioButton>
+            </MatRadioGroup>
+        </p>
 
-    <p>
-        <label>
-            Czy kiedykolwiek szczepiłeś/aś się na grypę?
-        </label>
-        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerHistory" TValue="string">
-            <MatRadioButton Value="@("1")" TValue="string">Tak</MatRadioButton>
-            <MatRadioButton Value="@("0")" TValue="string">Nie</MatRadioButton>
-        </MatRadioGroup>
-    </p>
+        <p>
+            <label>
+                Czy szczepiłeś/aś się przeciw HPV?
+            </label>
+            <MatRadioGroup GroupName="hpv" @bind-Value="@Hpv" TValue="int">
+                <MatRadioButton Value="@(1)" TValue="int" Style="float:left; margin-right: 5px">Tak</MatRadioButton>
+                <MatRadioButton Value="@(0)" TValue="int" Style="float:left; margin-right: 5px">Nie</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+    </div>
 
-    <p>
-        <label>
-            Czy szczepiłeś/aś się przeciw HPV?
-        </label>
-        <MatRadioGroup GroupName="hpv" @bind-Value="@AnswerHistory" TValue="string">
-            <MatRadioButton Value="@("1")" TValue="string">Tak</MatRadioButton>
-            <MatRadioButton Value="@("0")" TValue="string">Nie</MatRadioButton>
-        </MatRadioGroup>
-    </p>
+   <div>
+        <p>
+            <label>
+                Pytania o opinię odnośnie szczepień.
+            </label>
+        </p>
+        <p>
+            <label>
+                Jaki jest twój stosunek do szczepień obowiązkowych (odra, świnka, różyczka…)?
+                Oceń w skali od 1 (bardzo pozytywny) do 5 (bardzo negatywny)
+            </label>
+            <MatRadioGroup @bind-Value="@Opinion1" TValue="string">
+                <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+            </MatRadioGroup>
+        </p>
 
-</EditForm>
+        <p>
+            <label>
+                Jaki jest twój stosunek do szczepień nieobowiązkowych (grypa, ospa, ...)?
+                Oceń w skali od 1 (bardzo negatywny) do 5 (bardzo pozytywny)
+            </label>
+            <MatRadioGroup @bind-Value="@Opinion2" TValue="string">
+                <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+            </MatRadioGroup>
+        </p>
 
-<EditForm Model="@rUser.Opinion" OnValidSubmit="@HandleValidSubmit">
-    <p>
-        <label>
-            Jaki jest twój stosunek do szczepień obowiązkowych (odra, świnka, różyczka…)?
-            Oceń w skali od 1 (bardzo pozytywny) do 5 (bardzo negatywny)
-        </label>
-        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
-            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
-        </MatRadioGroup>
-    </p>
+        <p>
+            <label>
+                Czy planujesz zaszczepić się na COVID-19?
+            </label>
+            <MatRadioGroup @bind-Value="@Opinion3" TValue="string">
+                <MatRadioButton Value="@("SA")" TValue="string">Tak / Już się zaszczepiłem/am</MatRadioButton>
+                <MatRadioButton Value="@("SD")" TValue="string">Nie</MatRadioButton>
+                <MatRadioButton Value="@("NS")" TValue="string">NIe jestem pewny/a</MatRadioButton>
+            </MatRadioGroup>
+        </p>
 
-    <p>
-        <label>
-            Jaki jest twój stosunek do szczepień nieobowiązkowych (grypa, ospa, ...)?
-            Oceń w skali od 1 (bardzo negatywny) do 5 (bardzo pozytywny)
-        </label>
-        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
-            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
-        </MatRadioGroup>
-    </p>
+        <p>
+            <label>
+                Czy martwisz się o bezpieczeństwo i skuteczność szczepionki COVID-19?
+                Oceń w skali od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
+            </label>
+            <MatRadioGroup @bind-Value="@Opinion4" TValue="string">
+                <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+            </MatRadioGroup>
+        </p>
 
-    <p>
-        <label>
-            Czy planujesz zaszczepić się na COVID-19?
-        </label>
-        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
-            <MatRadioButton Value="@("SA")" TValue="string">Tak / Już się zaszczepiłem/am</MatRadioButton>
-            <MatRadioButton Value="@("SD")" TValue="string">Nie</MatRadioButton>
-            <MatRadioButton Value="@("NS")" TValue="string">NIe jestem pewny/a</MatRadioButton>
-        </MatRadioGroup>
-    </p>
+        <p>
+            <label>
+                Lepiej jest uzyskać odporność poprzez zachorowanie niż szczepienie.
+                Odpowiedź w skali  od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
+            </label>
+            <MatRadioGroup @bind-Value="@Opinion5" TValue="string">
+                <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+            </MatRadioGroup>
+        </p>
 
-    <p>
-        <label>
-            Czy martwisz się o bezpieczeństwo i skuteczność szczepionki COVID-19?
-            Oceń w skali od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
-        </label>
-        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
-            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
-        </MatRadioGroup>
-    </p>
+        <p>
+            <label>
+                Ufam informacjom, które otrzymuję na temat szczepionek.
+                Odpowiedź w skali  od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
+            </label>
+            <MatRadioGroup @bind-Value="@Opinion6" TValue="string">
+                <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
+                <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
+            </MatRadioGroup>
+        </p>
+    </div>
 
-    <p>
-        <label>
-            Lepiej jest uzyskać odporność poprzez zachorowanie niż szczepienie.
-            Odpowiedź w skali  od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
-        </label>
-        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
-            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
-        </MatRadioGroup>
-    </p>
+    <div>
+        <p>
+            <label>
+                Pytanie o źródło pozyskiwanej wiedzy:
+            </label>
+        </p>
 
-    <p>
-        <label>
-            Ufam informacjom, które otrzymuję na temat szczepionek.
-            Odpowiedź w skali  od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
-        </label>
-        <MatRadioGroup GroupName="grypa" @bind-Value="@AnswerOpinion" TValue="string">
-            <MatRadioButton Value="@("SA")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("A")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("NS")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("D")" TValue="string"></MatRadioButton>
-            <MatRadioButton Value="@("SD")" TValue="string"></MatRadioButton>
-        </MatRadioGroup>
-    </p>
+        <p>
+            <label>
+                Kto lub co jest Twoim głównym źródłem wiedzy o szczepieniach ochronnych?
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerKnowledge" TValue="string">
+                <MatRadioButton Value="@("telewizja")" TValue="string">Telewizja</MatRadioButton>
+                <MatRadioButton Value="@("internet")" TValue="string">Internet</MatRadioButton>
+                <MatRadioButton Value="@("szkoła")" TValue="string">Szkoła</MatRadioButton>
+                <MatRadioButton Value="@("ksiazki")" TValue="string">Książki</MatRadioButton>
+                <MatRadioButton Value="@("gazety")" TValue="string">Gazety</MatRadioButton>
+                <MatRadioButton Value="@("zaszczepieni")" TValue="string">Osoby zaszczepione</MatRadioButton>
+                <MatRadioButton Value="@("rodzina")" TValue="string">Rodzina i znajomi</MatRadioButton>
+                <MatRadioButton Value="@("lekarze")" TValue="string">Lekarze i pielęgniarki</MatRadioButton>
+                <MatRadioButton Value="@("brak")" TValue="string">Nie szukam informacji o szczepieniach</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+    </div>
+
+    <div>
+        <p>
+            <label>
+                Test wiedzy:
+            </label>
+        </p>
+        <div>
+            <p>
+                <label>
+                    Czym różnią się szczepienia obowiązkowe od zalecanych?
+                </label>
+                <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                    <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Szczepienia obowiązkowe obejmują kwalifikację do szczepienia, natomiast zalecanych to nie dotyczy.</MatRadioButton>
+                    <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Szczepienia obowiązkowe są ważne, a zalecane mniej ważne.</MatRadioButton>
+                    <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Szczepienia obowiązkowe są bezpłatne</MatRadioButton>
+                    <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Szczepienia obowiązkowe dotyczą dzieci, a zalecane – dorosłych</MatRadioButton>
+                </MatRadioGroup>
+            </p>
+        </div>
+
+        <p>
+            <label>
+                Do szczepień obowiązkowych należą:
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Szczepienia niemowląt przeciw meningokokom grupy B i rotawirusom.</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Szczepienia dzieci przeciw odrze, śwince i różyczce.</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Szczepienia przypominające dorosłych przeciw błonicy, tężcowi i krztuścowi.</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Szczepienia przeciw wirusowemu zapaleniu wątroby typu B dzieci, młodzieży i dorosłych.</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Szczepienia poekspozycyjne są to szczepienia wykonywane po narażeniu na czynnik zakaźny,
+                (np. po bezpośrednim kontakcie z osobą, która zaraża).
+                Do obowiązkowych szczepień poekspozycyjnych należą:
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Tylko szczepienia przeciw tężcowi i wściekliźnie.</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Szczepienia przeciw odrze i ospie wietrznej.</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Szczepienia przeciw błonicy, tężcowi i wściekliźnie.</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Tylko szczepienia przeciw wściekliźnie.</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Pierwsza opracowana szczepionka była przeciwko ospie prawdziwej:
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Prawda</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Fałsz</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Chorobą, która została całkowicie wyeliminowana z powierzchni ziemi dzięki szczepieniom jest:
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">dur brzuszny</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int"> ospa prawdziwa</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">poliomyelitis</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">dżuma</MatRadioButton>
+            </MatRadioGroup>>
+        </p>
+
+        <p>
+            <label>
+                Które z poniższych NIE jest chorobą, której można zapobiec dzięki szczepieniu?
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Rak szyjki macicy</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Odra</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Paraliż dziecięcy</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Astma</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Krztusiec powrócił, ponieważ:
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Oryginalna szczepionka nie była skuteczna</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Niewystarczająca liczba rodziców szczepiła swoje dzieci (ruchy antyszczepionkowców)</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Nowy szczep wirusa przybył do Stanów Zjednoczonych z zagranicy w latach siedemdziesiątych XX wieku</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Oryginalna szczepionka została celowo osłabiona</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Która pandemia wybuchła w 1918 roku?  
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Grypa hiszpanka</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Ebola</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Dżuma</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Świńska grypa</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Inna nazwa wirusa grypy A/H1N1, który przerodził się w pandemię to:
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Ptasia grypa</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Świńska grypa</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Grypa hiszpanka</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Wirus HIV</MatRadioButton>
+            </MatRadioGroup>>
+        </p>
+
+        <p>
+            <label>
+                Czy wirus dżumy zaliczany jest do broni biologicznej?
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Tak</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Nie</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Dorośli potrzebują dawki przypominającej przeciwko tężcowi i błonicy co 10 lat.
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Prawda</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Fałsz</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Czy wszystkie 3 dostępne szczepionki na koronawirusa (Pfizer/Moderna/AstraZeneca) to szczepionki mRNA?  
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Tak</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Nie</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Czy przyjęcie szczepionki na COVID-19 może wywołać zakażenie koronawirusem?
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Tak</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Nie</MatRadioButton>
+            </MatRadioGroup>>
+        </p>
+
+        <p>
+            <label>
+                Czy szczepionka wykorzystująca mRNA może wpłynąć na materiał genetyczny człowieka?
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Tak</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Nie</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Czy szczepienia powodują autyzm?
+            </label>
+            <MatRadioGroup @bind-Value="@AnswerTest" TValue="int">
+                <MatRadioButton Value="@(AnswerTest + 0)" TValue="int">Tak</MatRadioButton>
+                <MatRadioButton Value="@(AnswerTest + 1)" TValue="int">Nie</MatRadioButton>
+            </MatRadioGroup>
+        </p>
+
+        <p>
+            <label>
+                Wynik = @AnswerTest
+            </label>
+        </p>
+    </div>
+
+    <div id="form-navigation-container">
+
+        <MatButton Class="previous" disabled="@wizard.PreviousButtonDisabled" @onclick="wizard.GoToPreviousStep">Cofnij</MatButton>
+
+        <MatButton Unelevated="true" disabled="@wizard.NextButtonDisabled" @onclick="wizard.GoToNextStep">Następna strona</MatButton>
+    </div>
+
+    <MatProgressBar Class="progress" Progress="@wizard.Progress" aria-valuenow="@wizard.Progress" aria-valuemin="0" aria-valuemax="1"></MatProgressBar>
 
 
 </EditForm>
@@ -181,8 +403,19 @@ Welcome to your new app.
 </div>
 
 @code {
-    protected string AnswerHistory;
-    protected string AnswerOpinion;
+
+    ViewModels.Wizard wizard = new ViewModels.Wizard();
+    protected int Ospa;
+    protected int Grypa;
+    protected int Hpv;
+    protected string Opinion1;
+    protected string Opinion2;
+    protected string Opinion3;
+    protected string Opinion4;
+    protected string Opinion5;
+    protected string Opinion6;
+    protected string AnswerKnowledge;
+    protected int AnswerTest;
 
     private User rUser = new User();
     string message = "";

@@ -98,10 +98,21 @@ using Shared.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 183 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\Pages\Index.razor"
+#line 405 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\Pages\Index.razor"
        
-    protected string AnswerHistory;
-    protected string AnswerOpinion;
+
+    ViewModels.Wizard wizard = new ViewModels.Wizard();
+    protected int Ospa;
+    protected int Grypa;
+    protected int Hpv;
+    protected string Opinion1;
+    protected string Opinion2;
+    protected string Opinion3;
+    protected string Opinion4;
+    protected string Opinion5;
+    protected string Opinion6;
+    protected string AnswerKnowledge;
+    protected int AnswerTest;
 
     private User rUser = new User();
     string message = "";
