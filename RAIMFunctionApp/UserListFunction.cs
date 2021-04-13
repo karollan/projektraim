@@ -19,51 +19,11 @@ namespace RAIMFunctionApp
 {
     public static class UserListFunction
     {
-        /*        [FunctionName("CreateUser")]
-                public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "survey")] HttpRequestMessage req, ILogger log)
-                {
-
-                    log.LogInformation($"C# HTTP trigger function processed a request. RequestUri={req.RequestUri}");
-
-                    var successful = true;
-                    try
-                    {
-                        var cnn = Environment.GetEnvironmentVariable("SqlConnectionString");
-
-                        using (var connection = new SqlConnection(cnn))
-                        {
-                            connection.Open();
-                            log.LogInformation("JESTEM W ŚRODKU");
-                            dynamic body = await req.Content.ReadAsStringAsync();
-                            log.LogInformation($"{body}");
-                            var rUser = JsonConvert.DeserializeObject<User>(body as string);
-                            log.LogInformation($"{rUser.Age}, {rUser.Education}, {rUser.Gender}, {rUser.Student_eti}, {rUser.Started_at}, {rUser.Completed_at}");
-                            var query = $"INSERT INTO [User] (age,gender,student_eti,education, started_at, completed_at) VALUES('{rUser.Age}', '{rUser.Gender}' , '{rUser.Student_eti}', '{rUser.Education}', '{rUser.Started_at}', '{rUser.Completed_at}')";
-                            SqlCommand command = new SqlCommand(query, connection);
-                            command.ExecuteNonQuery();
-                            connection.Close();
-
-                            log.LogInformation("Log added to database successfully!");
-                            //return new OkObjectResult(rUser);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        log.LogInformation(ex.Message);
-                        successful = false;
-                        //return new BadRequestObjectResult(ex.Message);
-                    }
-                    return !successful
-                        ? req.CreateResponse(HttpStatusCode.BadRequest, "Unable to process your request!")
-                        : req.CreateResponse(HttpStatusCode.OK, "Data saved successfully!");
-                }*/
-
         [FunctionName("AddUser")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req, ILogger log)
         {
             User user;
-            //dynamic body = await req.Content.ReadAsStringAsync();
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             int insertRecord;
             try

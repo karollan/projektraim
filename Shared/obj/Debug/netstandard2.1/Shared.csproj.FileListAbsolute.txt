@@ -7,12 +7,12 @@ C:\Users\LudwigVanWanna\source\repos\Projekt\Shared\obj\Debug\netstandard2.1\Sha
 C:\Users\LudwigVanWanna\source\repos\Projekt\Shared\obj\Debug\netstandard2.1\Shared.csproj.CoreCompileInputs.cache
 C:\Users\LudwigVanWanna\source\repos\Projekt\Shared\obj\Debug\netstandard2.1\Shared.dll
 C:\Users\LudwigVanWanna\source\repos\Projekt\Shared\obj\Debug\netstandard2.1\Shared.pdb
-C:\Users\agnie\OneDrive\Pulpit\projektraim-main\Shared\bin\Debug\netstandard2.1\Shared.deps.json
-C:\Users\agnie\OneDrive\Pulpit\projektraim-main\Shared\bin\Debug\netstandard2.1\Shared.dll
-C:\Users\agnie\OneDrive\Pulpit\projektraim-main\Shared\bin\Debug\netstandard2.1\Shared.pdb
-C:\Users\agnie\OneDrive\Pulpit\projektraim-main\Shared\obj\Debug\netstandard2.1\Shared.csprojAssemblyReference.cache
-C:\Users\agnie\OneDrive\Pulpit\projektraim-main\Shared\obj\Debug\netstandard2.1\Shared.AssemblyInfoInputs.cache
-C:\Users\agnie\OneDrive\Pulpit\projektraim-main\Shared\obj\Debug\netstandard2.1\Shared.AssemblyInfo.cs
-C:\Users\agnie\OneDrive\Pulpit\projektraim-main\Shared\obj\Debug\netstandard2.1\Shared.csproj.CoreCompileInputs.cache
-C:\Users\agnie\OneDrive\Pulpit\projektraim-main\Shared\obj\Debug\netstandard2.1\Shared.dll
-C:\Users\agnie\OneDrive\Pulpit\projektraim-main\Shared\obj\Debug\netstandard2.1\Shared.pdb
+C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\Shared\bin\Debug\netstandard2.1\Shared.deps.json
+C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\Shared\bin\Debug\netstandard2.1\Shared.dll
+C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\Shared\bin\Debug\netstandard2.1\Shared.pdb
+C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\Shared\obj\Debug\netstandard2.1\Shared.csprojAssemblyReference.cache
+C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\Shared\obj\Debug\netstandard2.1\Shared.AssemblyInfoInputs.cache
+C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\Shared\obj\Debug\netstandard2.1\Shared.AssemblyInfo.cs
+C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\Shared\obj\Debug\netstandard2.1\Shared.csproj.CoreCompileInputs.cache
+C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\Shared\obj\Debug\netstandard2.1\Shared.dll
+C:\Users\LudwigVanWanna\source\repos\PROJEKT - kopia\Shared\obj\Debug\netstandard2.1\Shared.pdb

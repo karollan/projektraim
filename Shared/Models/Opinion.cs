@@ -10,11 +10,18 @@ namespace Shared.Models
     {
         public int Id { get; set; }
 
-        public string Text { get; set; }
+        public string CompulsoryVaccination { get; set; }
+
+        public string OptionalVaccination { get; set; }
+
+        public string CovidVaccination { get; set; }
+
+        public string CovidVacSafety { get; set; }
+
+        public string DiseaseOrVaccine { get; set; }
+
+        public string InformationTrust { get; set; }
 
         public int UserId { get; set; }
-
-        public virtual User User { get; set; }
-
     }
 }

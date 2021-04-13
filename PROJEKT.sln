@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PROJEKT", "PROJEKT\PROJEKT.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAIMFunctionApp", "RAIMFunctionApp\RAIMFunctionApp.csproj", "{7682D55F-D181-426E-B95B-35CAA90FF6D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{6B5F5F62-BE61-418D-9CFE-2B0E5F3C8F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{6B5F5F62-BE61-418D-9CFE-2B0E5F3C8F3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

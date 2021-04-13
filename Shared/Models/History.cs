@@ -10,10 +10,12 @@ namespace Shared.Models
     {
         public int Id { get; set; }
 
-        public string Text { get; set; }
+        public string HPV { get; set; }
+
+        public string Flu { get; set; }
+
+        public string Chickenpox { get; set; }
 
         public int UserId { get; set; }
-
-        public virtual User User { get; set; }
     }
 }
