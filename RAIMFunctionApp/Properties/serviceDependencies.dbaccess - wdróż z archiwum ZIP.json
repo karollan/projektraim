@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/projektraimdb/databases/projektraimdb",
+      "type": "mssql.azure",
+      "connectionId": "projektraimdb.database.windows.net",
+      "secretStore": "AzureAppSettings"
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/projektraim",
+      "type": "storage.azure",
+      "connectionId": "AzureWebJobsStorage",
+      "secretStore": "AzureAppSettings"
+    },
+    "appInsights1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/microsoft.insights/components/dbaccess",
+      "type": "appInsights.azure",
+      "connectionId": "APPINSIGHTS_CONNECTIONSTRING",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

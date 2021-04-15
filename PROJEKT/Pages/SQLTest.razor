@@ -1,0 +1,209 @@
+﻿@page "/sqltest"
+@inject HttpClient Http
+@using Shared.Models
+@using System.Collections.Generic;
+
+
+<h3>SQLTest</h3>
+
+<button class="btn-success" @onclick="@addToDB">Dodaj info do bazy</button>
+
+
+@*Wykres*@
+<Button Clicked="@(async () => await showResults())">Pokaż wykres</Button>
+
+<div class="container mt-5">
+    <BarChart @ref="barChart" TItem="int" OptionsObject="@barChartOptions" />
+</div>
+@*Wykres*@
+
+
+
+<p>@message</p>
+
+
+
+@code {
+    
+    //przykladowe dane z ankiety
+    User rUser = new User
+    {
+        Age = "27-35",
+        Gender = "K",
+        Student_eti = "false",
+        Education = "wyzsze",
+        Started_at = DateTime.Now,
+        Result = new Result
+        {
+            Score = 13
+        },
+        KnowledgeSource = new KnowledgeSource
+        {
+            Source = "ksiazki"
+        },
+        Opinion = new Opinion
+        {
+            CompulsoryVaccination = "D",
+            OptionalVaccination = "SA",
+            CovidVaccination = "NS",
+            CovidVacSafety = "A",
+            DiseaseOrVaccine = "SD",
+            InformationTrust = "D"
+        },
+        History = new History
+        {
+            Chickenpox = "tak",
+            Flu = "tak",
+            HPV = "nie"
+        }
+
+    };
+    string message = "";
+    bool show = false;
+
+    //przy zatwierdzaniu ankiety wywolujesz taka funkcje
+
+    private async Task addToDB()
+    {
+
+        try
+        {
+            rUser.Completed_at = DateTime.Now;
+            message = "Sending the feedback";
+            var response = await Http.PostAsJsonAsync("http://localhost:7071/api/SubmitSurvey", rUser);
+            message = "Feedback stored in the destination";
+        }
+        catch (Exception ex)
+        {
+            message = "Failed to store your feedback";
+        }
+    }
+
+    //pokazujemy wyniki
+    //wystarczy skopiować wszystko poniżej i ustalic liczbe pytan w quizie w zmiennej maxScore
+
+    BarChart<int> barChart;
+
+    List<Data> Scores = new List<Data>();
+
+    int maxScore = 16;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await showResults();
+        }
+    }
+
+    async Task showResults()
+    {
+        show = true;
+        try
+        {
+            message = "Getting test scores";
+            Scores = await Http.GetFromJsonAsync<List<Data>>("http://localhost:7071/api/GetTestScores");
+            message = "Scores displayed";
+        }
+        catch (Exception ex)
+        {
+            message = "Failed to store your feedback";
+        }
+
+        await barChart.Clear();
+        await barChart.AddLabelsDatasetsAndUpdate(generateLabels(maxScore), GetBarChartDataset());
+    }
+
+    BarChartDataset<int> GetBarChartDataset()
+    {
+        return new BarChartDataset<int>
+        {
+            Label = "Wyniki",
+            Data = getDistribution(Scores, maxScore),
+            BackgroundColor = generateColors(maxScore, 0.6f),
+            BorderColor = generateColors(maxScore, 1f),
+            BorderWidth = 1,
+
+        };
+    }
+
+    object barChartOptions = new
+    {
+        Title = new
+        {
+            Display = true,
+            Text = "Wyniki testu"
+        },
+
+        Scales = new
+        {
+            YAxes = new object[]
+            {
+                new
+                {
+                    ScaleLabel = new
+                    {
+                        Display = true, LabelString = "Liczba ankietowanych"
+                    }
+                }
+                    },
+            XAxes = new object[]
+            {
+                new
+                {
+                    ScaleLabel = new
+                    {
+                        Display = true, LabelString = "Ilość punktów"
+                    }
+                }
+                    }
+        }
+    };
+
+    private List<int> getDistribution(List<Data> data, int range)
+    {
+        List<int> result = new List<int>();
+
+        var hash = new HashBag<int>();
+        hash.AddAll(data.Select(c => c.Y).ToList());
+        var mults = hash.ItemMultiplicities();
+
+
+        for (int i = 0; i <= range; i++)
+        {
+            result.Add(0);
+        }
+
+        foreach (C5.KeyValuePair<int, int> kvp in mults)
+        {
+            result[kvp.Key] = kvp.Value;
+        }
+
+        return result;
+    }
+
+    private string[] generateLabels(int colNumber)
+    {
+        string[] Labels = new string[colNumber + 1];
+
+        for (int i = 0; i <= colNumber; i++)
+        {
+            Labels[i] = i.ToString();
+        }
+        return Labels;
+    }
+
+    private List<string> generateColors(int colNumber, float a)
+    {
+        List<string> result = new List<string>();
+
+        for (int i = 0; i <= colNumber; i++)
+        {
+
+            result.Add(ChartColor.FromRgba(255, 111, 145, a));
+        }
+
+        return result;
+    }
+}
+
