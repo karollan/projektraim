@@ -8028,19 +8028,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Moriator\\.nuget\\packages\\": {}
+    "C:\\Users\\agnie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\PROJEKT\\PROJEKT.csproj",
+      "projectUniqueName": "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\PROJEKT\\PROJEKT.csproj",
       "projectName": "PROJEKT",
-      "projectPath": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\PROJEKT\\PROJEKT.csproj",
-      "packagesPath": "C:\\Users\\Moriator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\PROJEKT\\obj\\",
+      "projectPath": "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\PROJEKT\\PROJEKT.csproj",
+      "packagesPath": "C:\\Users\\agnie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\PROJEKT\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Moriator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\agnie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8054,8 +8054,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\Shared\\Shared.csproj"
+            "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\Shared\\Shared.csproj"
             }
           }
         }
@@ -8125,7 +8125,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.browser-wasm",
-            "version": "[5.0.5, 5.0.5]"
+            "version": "[5.0.4, 5.0.4]"
           }
         ],
         "frameworkReferences": {
@@ -8133,7 +8133,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
