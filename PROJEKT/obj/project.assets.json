@@ -8028,20 +8028,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\agnie\\.nuget\\packages\\": {}
+    "C:\\Users\\LudwigVanWanna\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\PROJEKT\\PROJEKT.csproj",
+      "projectUniqueName": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\PROJEKT\\PROJEKT.csproj",
       "projectName": "PROJEKT",
-      "projectPath": "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\PROJEKT\\PROJEKT.csproj",
-      "packagesPath": "C:\\Users\\agnie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\PROJEKT\\obj\\",
+      "projectPath": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\PROJEKT\\PROJEKT.csproj",
+      "packagesPath": "C:\\Users\\LudwigVanWanna\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\PROJEKT\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\agnie\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\LudwigVanWanna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -8054,8 +8061,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\agnie\\OneDrive\\Pulpit\\projektraim-main\\Shared\\Shared.csproj"
+            "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\Shared\\Shared.csproj"
             }
           }
         }
@@ -8125,7 +8132,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.browser-wasm",
-            "version": "[5.0.4, 5.0.4]"
+            "version": "[5.0.5, 5.0.5]"
           }
         ],
         "frameworkReferences": {
@@ -8133,7 +8140,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

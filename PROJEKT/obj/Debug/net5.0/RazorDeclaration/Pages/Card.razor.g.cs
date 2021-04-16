@@ -13,92 +13,120 @@ namespace PROJEKT.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 1 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 2 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 3 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 4 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 5 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 6 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 7 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 8 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using PROJEKT;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 9 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using PROJEKT.Share;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 10 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using MatBlazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 11 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using Blazorise;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 12 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using Blazorise.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\_Imports.razor"
+#line 13 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+using Blazorise.Icons.FontAwesome;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
 using C5;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\Pages\Card.razor"
+using Shared.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\Pages\Card.razor"
+using ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\Pages\Card.razor"
+using FormModels;
 
 #line default
 #line hidden
@@ -112,14 +140,40 @@ using C5;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 56 "C:\Users\agnie\OneDrive\Pulpit\projektraim-main\PROJEKT\Pages\Card.razor"
-               
-            DateTime time = DateTime.Now;
-        
+#line 65 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\Pages\Card.razor"
+       
+    //QUIZ
+    List<QuizItem> quiz;
+    List<int> quizScores = new List<int>();
+    int currentScore = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        quiz = await Http.GetJsonAsync<List<QuizItem>>("http://localhost:7071/api/GetQuiz");
+    }
+
+    void UpdateScore(int chosenAnswerIndex, int quizIndex)
+    {
+        var quizItem = quiz[quizIndex];
+
+        if (chosenAnswerIndex == quizItem.AnswerIndex)
+        {
+            quizScores[quizIndex] = quizItem.Score;
+        }
+        else
+        {
+            quizScores[quizIndex] = 0;
+        }
+        currentScore = quizScores.Sum();
+    }
+    //QUIZ
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }
 #pragma warning restore 1591
