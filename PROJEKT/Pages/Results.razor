@@ -1,0 +1,173 @@
+﻿@page "/results/{currentScore}"
+@inject HttpClient Http
+@using Shared.Models
+@using System.Collections.Generic;
+
+
+
+@if (Scores == null)
+{
+    <p>@message</p>
+}
+else
+{
+    <div class="mat-layout-grid" style="max-width: 1280px;">
+        <div class="mat-layout-grid-inner">
+            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                <MatPaper Elevation="1" Rounded="true">
+                    <div class="mat-layout-grid-inner p-4">
+                        <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                            <h5 class="mat-h6 text-center">Twój wynik to @score</h5>
+
+                        </div>
+                        <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                            @*Wykres*@
+                            <div class="container mt-5">
+                                <BarChart @ref="barChart" TItem="int" OptionsObject="@barChartOptions" />
+                            </div>
+                            @*Wykres*@
+                        </div>
+                    </div>
+                </MatPaper>
+            </div>
+        </div>
+    </div>
+
+
+            }
+
+
+
+            @code {
+                [Parameter]
+                public string CurrentScore { get; set; }
+                public int score;
+                string message = "";
+                BarChart<int> barChart;
+
+                List<Data> Scores = new List<Data>();
+
+                int maxScore = 16;
+
+                protected override void OnInitialized()
+                {
+                    score = int.Parse(CurrentScore);
+                }
+
+                protected override async Task OnAfterRenderAsync(bool firstRender)
+                {
+                    if (firstRender)
+                    {
+                        await showResults();
+                    }
+                }
+
+                async Task showResults()
+                {
+                    try
+                    {
+                        message = "Pobieram wyniki z bazy danych";
+                        Scores = await Http.GetFromJsonAsync<List<Data>>("/api/GetTestScores");
+                        message = "Scores displayed";
+                    }
+                    catch (Exception ex)
+                    {
+                        message = "Failed to store your feedback";
+                    }
+
+                    await barChart.Clear();
+                    await barChart.AddLabelsDatasetsAndUpdate(generateLabels(maxScore), GetBarChartDataset());
+                }
+
+                BarChartDataset<int> GetBarChartDataset()
+                {
+                    return new BarChartDataset<int>
+                    {
+                        Label = "Wyniki",
+                        Data = getDistribution(Scores, maxScore),
+                        BackgroundColor = generateColors(maxScore, 0.6f),
+                        BorderColor = generateColors(maxScore, 1f),
+                        BorderWidth = 1,
+
+                    };
+                }
+
+                object barChartOptions = new
+                {
+                    Title = new
+                    {
+                        Display = true,
+                        Text = "Wyniki testu"
+                    },
+
+                    Scales = new
+                    {
+                        YAxes = new object[]
+                        {
+                new
+                {
+                    ScaleLabel = new
+                    {
+                        Display = true, LabelString = "Liczba ankietowanych"
+                    }
+                }
+                                    },
+                        XAxes = new object[]
+                        {
+                new
+                {
+                    ScaleLabel = new
+                    {
+                        Display = true, LabelString = "Ilość punktów"
+                    }
+                }
+                                    }
+                    }
+                };
+
+                private List<int> getDistribution(List<Data> data, int range)
+                {
+                    List<int> result = new List<int>();
+
+                    var hash = new HashBag<int>();
+                    hash.AddAll(data.Select(c => c.Y).ToList());
+                    var mults = hash.ItemMultiplicities();
+
+
+                    for (int i = 0; i <= range; i++)
+                    {
+                        result.Add(0);
+                    }
+
+                    foreach (C5.KeyValuePair<int, int> kvp in mults)
+                    {
+                        result[kvp.Key] = kvp.Value;
+                    }
+
+                    return result;
+                }
+
+                private string[] generateLabels(int colNumber)
+                {
+                    string[] Labels = new string[colNumber + 1];
+
+                    for (int i = 0; i <= colNumber; i++)
+                    {
+                        Labels[i] = i.ToString();
+                    }
+                    return Labels;
+                }
+
+                private List<string> generateColors(int colNumber, float a)
+                {
+                    List<string> result = new List<string>();
+
+                    for (int i = 0; i <= colNumber; i++)
+                    {
+
+                        result.Add(ChartColor.FromRgba(255, 111, 145, a));
+                    }
+
+                    return result;
+                }
+            }
