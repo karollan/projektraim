@@ -110,20 +110,6 @@ using C5;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 3 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Index.razor"
-using Shared.Models;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Index.razor"
-using FormModels;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -133,7 +119,7 @@ using FormModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 48 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Index.razor"
+#line 46 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Index.razor"
        
     public void survey()
     {
