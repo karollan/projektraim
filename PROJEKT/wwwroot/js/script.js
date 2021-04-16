@@ -15,9 +15,9 @@ function showTab(n, container) {
         container.querySelector("#prevBtn").style.display = "inline";
     }
     if (n == (x.length - 1)) {
-        container.querySelector("#nextBtn").innerHTML = '<i class="fa fa - angle - double - right"></i>';
+        container.querySelector("#nextBtn").innerHTML = 'Dalej';
     } else {
-        container.querySelector("#nextBtn").innerHTML = '<i class="fa fa-angle-double-right"></i>';
+        container.querySelector("#nextBtn").innerHTML = 'Dalej';
     }
     // ... and run a function that displays the correct step indicator:
     fixStepIndicator(n, container)
