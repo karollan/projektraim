@@ -8028,27 +8028,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LudwigVanWanna\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Moriator\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\PROJEKT\\PROJEKT.csproj",
+      "projectUniqueName": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\PROJEKT\\PROJEKT.csproj",
       "projectName": "PROJEKT",
-      "projectPath": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\PROJEKT\\PROJEKT.csproj",
-      "packagesPath": "C:\\Users\\LudwigVanWanna\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\PROJEKT\\obj\\",
+      "projectPath": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\PROJEKT\\PROJEKT.csproj",
+      "packagesPath": "C:\\Users\\Moriator\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\PROJEKT\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\LudwigVanWanna\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Moriator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -8061,8 +8054,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\Shared\\Shared.csproj"
+            "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\Shared\\Shared.csproj"
             }
           }
         }

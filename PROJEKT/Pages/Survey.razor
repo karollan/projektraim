@@ -1,0 +1,899 @@
+﻿@page "/survey"
+@inject HttpClient Http
+@using Shared.Models
+@using FormModels
+@inject IJSRuntime js
+@inject NavigationManager NavigationManager
+
+
+<div @ref="container">
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <h1 class="text-center" id="survey">Ocena wiedzy studentów ETI na temat szczepionek</h1>
+                <div class="all-steps" id="all-steps" style="text-align:center;margin-top:40px;">
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                </div>
+
+                <div class="tab">
+                    <Validations @ref="userVal" Model="@rUser" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+
+                        <div class="mat-layout-grid" style="max-width: 1280px;">
+                            <div class="mat-layout-grid-inner">
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h6 ">Wiek:</h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup TValue="string" @bind-CheckedValue="rUser.Age" Name="colors" Orientation="Orientation.Vertical">
+                                                        <Radio TValue="string" Value="@("<18")">Mniej niż 18</Radio>
+                                                        <Radio TValue="string" Value="@("18-26")">18-26</Radio>
+                                                        <Radio TValue="string" Value="@("27-35")">27-35</Radio>
+                                                        <Radio TValue="string" Value="@("36-65")">36-65</Radio>
+                                                        <Radio TValue="string" Value="@(">65")">Więcej niż 65</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h6">Płeć:</h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@rUser.Gender" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("M")" TValue="string">Mężczyzna</Radio>
+                                                        <Radio Value="@("K")" TValue="string">Kobieta</Radio>
+                                                        <Radio Value="@("I")" TValue="string">Nie chcę odpowiadać na to pytanie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h6">Wykształcenie:</h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@rUser.Education" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("podstawowe")" TValue="string">Podstawowe</Radio>
+                                                        <Radio Value="@("zasadnicze")" TValue="string">Zasadnicze zawodowe</Radio>
+                                                        <Radio Value="@("srednie")" TValue="string">Średnie</Radio>
+                                                        <Radio Value="@("wyzsze")" TValue="string">Wyższe</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h6">Czy jesteś studentem?</h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@rUser.Student_eti" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("NS")" TValue="string">Nie studiuję</Radio>
+                                                        <Radio Value="@("SETI")" TValue="string">Jestem studentem ETI na PG</Radio>
+                                                        <Radio Value="@("SPG")" TValue="string">Jestem studentem innego wydziału PG</Radio>
+                                                        <Radio Value="@("SNPG")" TValue="string">Jestem studentem innej uczelni</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <div id="nextprevious">
+                                        <MatButton Raised="true" Id="prevBtn" OnClick="@prev">Cofnij</MatButton>
+                                        <MatButton Raised="true" Id="nextBtn" OnClick="@(() => next(0))">Dalej</MatButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </Validations>
+
+                </div>
+
+                <div class="tab">
+                    <Validations @ref="historyVal" Model="@history" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+
+                        <div class="mat-layout-grid" style="        max-width: 1280px;">
+                            <div class="mat-layout-grid-inner">
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h6 ">Czy szczepiłeś/aś się na ospę wietrzną?</h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@history.Chickenpox" TValue="string">
+                                                        <Radio Value="@("tak")" TValue="string">Tak</Radio>
+                                                        <Radio Value="@("nie")" TValue="string">Nie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h6">Czy kiedykolwiek szczepiłeś/aś się na grypę?</h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@history.Flu" TValue="string">
+                                                        <Radio Value="@("tak")" TValue="string">Tak</Radio>
+                                                        <Radio Value="@("nie")" TValue="string">Nie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h6">Czy szczepiłeś/aś się przeciw HPV?</h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@history.HPV" TValue="string">
+                                                        <Radio Value="@("tak")" TValue="string">Tak</Radio>
+                                                        <Radio Value="@("nie")" TValue="string">Nie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <div id="nextprevious">
+                                        <MatButton Raised="true" Id="prevBtn" OnClick="@prev">Cofnij</MatButton>
+                                        <MatButton Raised="true" Id="nextBtn" OnClick="@(() => next(1))">Dalej</MatButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Validations>
+                </div>
+
+                <div class="tab">
+                    <Validations @ref="opinionVal" Model="@opinion" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+
+                        <div class="mat-layout-grid" style="        max-width: 1280px;">
+                            <div class="mat-layout-grid-inner">
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7 ">
+                                                    Jaki jest twój stosunek do szczepień obowiązkowych (odra, świnka, różyczka…)?
+                                                    <br />
+                                                    Oceń w skali od 1 (bardzo pozytywny) do 5 (bardzo negatywny)
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@opinion.CompulsoryVaccination" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("SA")" TValue="string">Bardzo pozytywny</Radio>
+                                                        <Radio Value="@("A")" TValue="string">Pozytywny</Radio>
+                                                        <Radio Value="@("NS")" TValue="string">Nie wiem / Obojętny</Radio>
+                                                        <Radio Value="@("D")" TValue="string">Negatywny</Radio>
+                                                        <Radio Value="@("SD")" TValue="string">Bardzo negatywny</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Jaki jest twój stosunek do szczepień nieobowiązkowych (grypa, ospa, ...)?
+                                                    <br />
+                                                    Oceń w skali od 1 (bardzo negatywny) do 5 (bardzo pozytywny)
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@opinion.OptionalVaccination" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("SA")" TValue="string">Bardzo pozytywny</Radio>
+                                                        <Radio Value="@("A")" TValue="string">Pozytywny</Radio>
+                                                        <Radio Value="@("NS")" TValue="string">Nie wiem / Obojętny</Radio>
+                                                        <Radio Value="@("D")" TValue="string">Negatywny</Radio>
+                                                        <Radio Value="@("SD")" TValue="string">Bardzo negatywny</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">Czy planujesz zaszczepić się na COVID-19?</h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@opinion.CovidVaccination" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("SA")" TValue="string">Tak / Już się zaszczepiłem/am</Radio>
+                                                        <Radio Value="@("NS")" TValue="string">Nie jestem pewny/a</Radio>
+                                                        <Radio Value="@("SD")" TValue="string">Nie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Martwię się o bezpieczeństwo i skuteczność szczepionki na COVID-19
+                                                    <br />
+                                                    Oceń w skali od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@opinion.CovidVacSafety" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("SA")" TValue="string">Zdecydowanie się zgadzam</Radio>
+                                                        <Radio Value="@("A")" TValue="string">Zgadzam się</Radio>
+                                                        <Radio Value="@("NS")" TValue="string">Nie wiem / Obojętny</Radio>
+                                                        <Radio Value="@("D")" TValue="string">Nie zgadzam się</Radio>
+                                                        <Radio Value="@("SD")" TValue="string">Zdecydowanie się nie zgadzam</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Lepiej jest uzyskać odporność poprzez zachorowanie niż szczepienie.
+                                                    <br />
+                                                    Odpowiedź w skali  od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@opinion.DiseaseOrVaccine" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("SA")" TValue="string">Zdecydowanie się zgadzam</Radio>
+                                                        <Radio Value="@("A")" TValue="string">Zgadzam się</Radio>
+                                                        <Radio Value="@("NS")" TValue="string">Nie wiem / Obojętny</Radio>
+                                                        <Radio Value="@("D")" TValue="string">Nie zgadzam się</Radio>
+                                                        <Radio Value="@("SD")" TValue="string">Zdecydowanie się nie zgadzam</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Ufam informacjom, które otrzymuję na temat szczepionek.
+                                                    <br />
+                                                    Odpowiedź w skali  od 1 (zdecydowanie się zgadzam) do 5 (zdecydowanie się nie zgadzam)
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@opinion.InformationTrust" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("SA")" TValue="string">Zdecydowanie się zgadzam</Radio>
+                                                        <Radio Value="@("A")" TValue="string">Zgadzam się</Radio>
+                                                        <Radio Value="@("NS")" TValue="string">Nie wiem / Obojętny</Radio>
+                                                        <Radio Value="@("D")" TValue="string">Nie zgadzam się</Radio>
+                                                        <Radio Value="@("SD")" TValue="string">Zdecydowanie się nie zgadzam</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <div id="nextprevious">
+                                        <MatButton Raised="true" Id="prevBtn" OnClick="@prev">Cofnij</MatButton>
+                                        <MatButton Raised="true" Id="nextBtn" OnClick="@(() => next(2))">Dalej</MatButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Validations>
+                </div>
+
+                <div class="tab">
+                    <Validations @ref="knowledgeVal" Model="@knowledge" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+
+                        <div class="mat-layout-grid" style="        max-width: 1280px;">
+                            <div class="mat-layout-grid-inner">
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h6 ">Kto lub co jest Twoim głównym źródłem wiedzy o szczepieniach ochronnych?</h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation>
+                                                    <RadioGroup @bind-CheckedValue="@knowledge.Source" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("telewizja")" TValue="string">Telewizja</Radio>
+                                                        <Radio Value="@("internet")" TValue="string">Internet</Radio>
+                                                        <Radio Value="@("szkoła")" TValue="string">Szkoła</Radio>
+                                                        <Radio Value="@("ksiazki")" TValue="string">Książki</Radio>
+                                                        <Radio Value="@("gazety")" TValue="string">Gazety</Radio>
+                                                        <Radio Value="@("zaszczepieni")" TValue="string">Osoby zaszczepione</Radio>
+                                                        <Radio Value="@("rodzina")" TValue="string">Rodzina i znajomi</Radio>
+                                                        <Radio Value="@("lekarze")" TValue="string">Lekarze i pielęgniarki</Radio>
+                                                        <Radio Value="@("brak")" TValue="string">Nie szukam informacji o szczepieniach</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <div id="nextprevious">
+                                        <MatButton Raised="true" Id="prevBtn" OnClick="@prev">Cofnij</MatButton>
+                                        <MatButton Raised="true" Id="nextBtn" OnClick="@(() => next(3))">Dalej</MatButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Validations>
+                </div>
+
+                <div class="tab">
+                    <Validations @ref="quizVal" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+
+                        <div class="mat-layout-grid" style="        max-width: 1280px;">
+                            <div class="mat-layout-grid-inner">
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7 ">
+                                                    Czym różnią się szczepienia obowiązkowe od zalecanych?
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 2, 0))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Szczepienia obowiązkowe obejmują kwalifikację do szczepienia, natomiast zalecanych to nie dotyczy</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Szczepienia obowiązkowe są ważne, a zalecane mniej ważne</Radio>
+                                                        <Radio Value="@("2")" TValue="string">Szczepienia obowiązkowe są bezpłatne</Radio>
+                                                        <Radio Value="@("3")" TValue="string">Szczepienia obowiązkowe dotyczą dzieci, a zalecane – dorosłych</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Do szczepień obowiązkowych należą:
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 1, 1))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Szczepienia niemowląt przeciw meningokokom grupy B i rotawirusom</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Szczepienia dzieci przeciw odrze, śwince i różyczce</Radio>
+                                                        <Radio Value="@("2")" TValue="string">Szczepienia przypominające dorosłych przeciw błonicy, tężcowi i krztuścowi</Radio>
+                                                        <Radio Value="@("3")" TValue="string">Szczepienia przeciw wirusowemu zapaleniu wątroby typu B dzieci, młodzieży i dorosłych</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Szczepienia poekspozycyjne są to szczepienia wykonywane po narażeniu na czynnik zakaźny, (np. po bezpośrednim kontakcie z osobą, która zaraża). Do obowiązkowych szczepień poekspozycyjnych należą:
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 2, 2))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Tylko szczepienia przeciw tężcowi i wściekliźnie</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Szczepienia przeciw odrze i ospie wietrznej</Radio>
+                                                        <Radio Value="@("2")" TValue="string">Szczepienia przeciw błonicy, tężcowi i wściekliźnie</Radio>
+                                                        <Radio Value="@("3")" TValue="string">Tylko szczepienia przeciw wściekliźnie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Chorobą, która została całkowicie wyeliminowana z powierzchni ziemi dzięki szczepieniom jest:
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 2, 3))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Dur brzuszny</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Ospa prawdziwa</Radio>
+                                                        <Radio Value="@("2")" TValue="string">Poliomyelitis</Radio>
+                                                        <Radio Value="@("3")" TValue="string">Dżuma</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Pierwsza opracowana szczepionka była przeciwko ospie prawdziwej:
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 0, 4))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Prawda</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Fałsz</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Które z poniższych NIE jest chorobą, której można zapobiec dzięki szczepieniu?
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 3, 5))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Rak szyjki macicy</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Odra</Radio>
+                                                        <Radio Value="@("2")" TValue="string">Paraliż dziecięcy</Radio>
+                                                        <Radio Value="@("3")" TValue="string">Astma</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Krztusiec powrócił, ponieważ:
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 3, 6))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Oryginalna szczepionka nie była skuteczna</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Niewystarczająca liczba rodziców szczepiła swoje dzieci (ruchy antyszczepionkowców)</Radio>
+                                                        <Radio Value="@("2")" TValue="string">Nowy szczep wirusa przybył do Stanów Zjednoczonych z zagranicy w latach siedemdziesiątych XX wieku</Radio>
+                                                        <Radio Value="@("3")" TValue="string">Oryginalna szczepionka została celowo osłabiona</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Która pandemia wybuchła w 1918 roku?
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 0, 7))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Grypa hiszpanka</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Ebola</Radio>
+                                                        <Radio Value="@("2")" TValue="string">Dżuma</Radio>
+                                                        <Radio Value="@("3")" TValue="string">Świńska grypa</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Inna nazwa wirusa grypy A/H1N1, który przerodził się w pandemię to:
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 1, 8))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Ptasia grypa</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Świńska grypa</Radio>
+                                                        <Radio Value="@("2")" TValue="string">Grypa hiszpanka</Radio>
+                                                        <Radio Value="@("3")" TValue="string">Wirus HIV</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Czy wirus dżumy zaliczany jest do broni biologicznej?
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 0, 9))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Tak</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Nie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Dorośli potrzebują dawki przypominającej przeciwko tężcowi i błonicy co 10 lat.
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 0, 10))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Prawda</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Fałsz</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Czy wszystkie 3 dostępne szczepionki na koronawirusa (Pfizer/Moderna/AstraZeneca) to szczepionki mRNA?
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 1, 11))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Tak</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Nie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Czy przyjęcie szczepionki na COVID-19 może wywołać zakażenie koronawirusem?
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 1, 12))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Tak</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Nie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Czy szczepionka wykorzystująca mRNA może wpłynąć na materiał genetyczny człowieka?
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 1, 13))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Tak</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Nie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <MatPaper Elevation="1" Rounded="true">
+                                        <div class="mat-layout-grid-inner p-4">
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <h5 class="mat-h7">
+                                                    Czy szczepienia powodują autyzm?
+                                                </h5>
+
+                                            </div>
+                                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                                    <RadioGroup CheckedValueChanged="@((args)=>UpdateScore(Convert.ToInt32(args), 1, 14))" TValue="string" Orientation="Orientation.Vertical">
+                                                        <Radio Value="@("0")" TValue="string">Tak</Radio>
+                                                        <Radio Value="@("1")" TValue="string">Nie</Radio>
+                                                    </RadioGroup>
+                                                </Validation>
+                                            </div>
+                                        </div>
+                                    </MatPaper>
+                                </div>
+                                <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                    <div id="nextprevious">
+                                        <MatButton Raised="true" Id="prevBtn" OnClick="@prev">Cofnij</MatButton>
+                                        <MatButton Raised="true" Id="nextBtn" OnClick="@(() => next(4))">Zakończ</MatButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Validations>
+                </div>
+                <div class="tab">
+                    <div class="mat-layout-grid" style="max-width: 1280px;">
+                        <div class="mat-layout-grid-inner">
+                            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                <MatPaper Elevation="1" Rounded="true">
+                                    <div class="mat-layout-grid-inner p-4">
+                                        <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12">
+                                            <h5 class="mat-h7 text-center">
+                                                Dziękujemy za wypełnienie ankiety! <span>Kliknij przycisk aby zobaczyć wyniki testu!</span>
+                                            </h5>
+
+                                        </div>
+                                        <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12 thanks-message text-center" id="text-message">
+                                            <img src="https://i.imgur.com/O18mJ1K.png" width="100" class="mb-4">
+                                        </div>
+                                        <div class="mat-layout-grid-cell mat-layout-grid-cell-span-12 text-center">
+                                            <MatButton Raised="true" OnClick="@results">Zobacz wyniki!</MatButton>
+                                        </div>
+                                    </div>
+                                </MatPaper>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    int quizQuestions = 15;
+    private ElementReference container;
+    Validations userVal = new Validations();
+    Validations historyVal = new Validations();
+    Validations opinionVal = new Validations();
+    Validations knowledgeVal = new Validations();
+    Validations quizVal = new Validations();
+
+    UserModel rUser = new UserModel();
+    HistoryModel history = new HistoryModel();
+    OpinionModel opinion = new OpinionModel();
+    KnowledgeSourceModel knowledge = new KnowledgeSourceModel();
+
+    //QUIZ
+    List<int> quizScores = new List<int>();
+    public int currentScore = 0;
+
+    protected override void OnInitialized()
+    {
+        for (int i = 0; i < quizQuestions; i++)
+        {
+            quizScores.Add(0);
+        }
+        rUser.Started_at = DateTime.Now;
+    }
+
+    void UpdateScore(int chosenAnswerIndex, int quizAnswerIndex, int questionNumber)
+    {
+        if (chosenAnswerIndex == quizAnswerIndex)
+        {
+            quizScores[questionNumber] = 1;
+        }
+        else
+        {
+            quizScores[questionNumber] = 0;
+        }
+        currentScore = quizScores.Sum();
+    }
+    //QUIZ
+
+    void results()
+    {
+        NavigationManager.NavigateTo($"results/{currentScore}");
+    }
+
+    private async Task prev()
+    {
+        await js.InvokeVoidAsync("nextPrev", -1, container);
+    }
+
+    private async Task next(int step)
+    {
+        bool isValid;
+        bool end = false;
+        switch (step)
+        {
+            case 0:
+                isValid = userVal.ValidateAll();
+                break;
+            case 1:
+                isValid = historyVal.ValidateAll();
+                break;
+            case 2:
+                isValid = opinionVal.ValidateAll();
+                break;
+            case 3:
+                isValid = knowledgeVal.ValidateAll();
+                break;
+            case 4:
+                isValid = quizVal.ValidateAll();
+                end = true;
+                break;
+            default:
+                isValid = false;
+                break;
+        }
+
+        if (isValid)
+        {
+            await js.InvokeVoidAsync("nextPrev", 1, container);
+        }
+        if (end)
+        {
+            await HandleValidSubmit();
+        }
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await js.InvokeVoidAsync("initializeComponent", container);
+        }
+    }
+
+
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            User user = new User
+
+            {
+                Age = rUser.Age,
+                Gender = rUser.Gender,
+                Student_eti = rUser.Student_eti,
+                Education = rUser.Education,
+                Started_at = rUser.Started_at,
+                Completed_at = DateTime.Now,
+                Result = new Result
+                {
+                    Score = currentScore
+                },
+                KnowledgeSource = new KnowledgeSource
+                {
+                    Source = knowledge.Source
+                },
+                Opinion = new Opinion
+                {
+                    CompulsoryVaccination = opinion.CompulsoryVaccination,
+                    OptionalVaccination = opinion.OptionalVaccination,
+                    CovidVaccination = opinion.CovidVaccination,
+                    CovidVacSafety = opinion.CovidVacSafety,
+                    DiseaseOrVaccine = opinion.DiseaseOrVaccine,
+                    InformationTrust = opinion.InformationTrust
+                },
+                History = new History
+                {
+                    Chickenpox = history.Chickenpox,
+                    Flu = history.Flu,
+                    HPV = history.HPV
+                }
+
+
+            };
+            var response = await Http.PostAsJsonAsync("/api/SubmitSurvey", user);
+
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
+}

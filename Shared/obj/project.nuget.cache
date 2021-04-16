@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "9IuI2sr9Hm9bUnX5txmhlILv3PGHHMMKc2deMaK3WNNRfbqvFFGnR21N1eMyJiI+7nDNKEZxC6xCp1SWKApRHg==",
+  "dgSpecHash": "H5aXq33kHreoer0+AsNADdhONRNlYIdqiNhOMtoFauEYOeuM2Dwvh3WgACPly/n1h2aQaNwwGI41DrKAW5kRrA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\Shared\\Shared.csproj",
+  "projectFilePath": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\Shared\\Shared.csproj",
   "expectedPackageFiles": [
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.componentmodel\\4.3.0\\system.componentmodel.4.3.0.nupkg.sha512",
-    "C:\\Users\\LudwigVanWanna\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512"
+    "C:\\Users\\Moriator\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Moriator\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\Moriator\\.nuget\\packages\\system.componentmodel\\4.3.0\\system.componentmodel.4.3.0.nupkg.sha512",
+    "C:\\Users\\Moriator\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
+    "C:\\Users\\Moriator\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

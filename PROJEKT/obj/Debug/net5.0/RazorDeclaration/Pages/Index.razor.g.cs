@@ -13,119 +13,112 @@ namespace PROJEKT.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 1 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 2 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 3 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 4 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 5 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 6 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 7 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 8 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using PROJEKT;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 9 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using PROJEKT.Share;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 10 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using MatBlazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 11 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using Blazorise;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 12 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using Blazorise.Charts;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 13 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using Blazorise.Icons.FontAwesome;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\_Imports.razor"
+#line 14 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\_Imports.razor"
 using C5;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\Pages\Index.razor"
+#line 3 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Index.razor"
 using Shared.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\Pages\Index.razor"
-using ViewModels;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\Pages\Index.razor"
+#line 4 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Index.razor"
 using FormModels;
 
 #line default
@@ -140,164 +133,19 @@ using FormModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 646 "C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\Pages\Index.razor"
+#line 48 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Index.razor"
        
-
-    private ElementReference container;
-    UserModel rUser = new UserModel();
-    HistoryModel history = new HistoryModel();
-    OpinionModel opinion = new OpinionModel();
-    KnowledgeSourceModel knowledge = new KnowledgeSourceModel();
-    private EditContext editContext;
-
-
-    protected int Val1;
-    protected int Val2;
-    protected int Val3;
-    protected int Val4;
-    protected int Val5;
-    protected int Val6;
-    protected int Val7;
-    protected int Val8;
-    protected int Val9;
-    protected int Val10;
-    protected int Val11;
-    protected int Val12;
-    protected int Val13;
-    protected int Val14;
-    protected int Val15;
-
-    private int SaveResult()
+    public void survey()
     {
-        int result = Val1 + Val2 + Val3 + Val4 + Val5 + Val6 + Val7 + Val8 + Val9 + Val10 + Val11 + Val12 + Val13 + Val14 + Val15;
-        return result;
-    }
+        NavigationManager.NavigateTo("survey");
 
-    private void SaveData()
-    {
-        User rUser = new User();
-        rUser.Result.Score = SaveResult();
-    }
-
-    string message = "";
-
-
-
-    //QUIZ
-    List<QuizItem> quiz;
-    List<int> quizScores = new List<int>();
-    int currentScore = 0;
-
-    protected override async Task OnInitializedAsync()
-    {
-        rUser.Started_at = DateTime.Now;
-        editContext = new EditContext(rUser);
-        quiz = await Http.GetJsonAsync<List<QuizItem>>("http://localhost:7071/api/GetQuiz");
-    }
-
-    void UpdateScore(int chosenAnswerIndex, int quizIndex)
-    {
-        var quizItem = quiz[quizIndex];
-
-        if (chosenAnswerIndex == quizItem.AnswerIndex)
-        {
-            quizScores[quizIndex] = quizItem.Score;
-        }
-        else
-        {
-            quizScores[quizIndex] = 0;
-        }
-        currentScore = quizScores.Sum();
-    }
-    //QUIZ
-
-
-
-    private async Task prev()
-    {
-        await js.InvokeVoidAsync("nextPrev", -1, container);
-    }
-
-    private async Task next()
-    {
-        var isValid = editContext.Validate();
-        if (isValid)
-        {
-            message = "";
-            await js.InvokeVoidAsync("nextPrev", 1, container);
-        }
-        else
-        {
-            message = "Należy wypełnić wszystkie pola formularza!";
-        }
-
-    }
-
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await js.InvokeVoidAsync("initializeComponent", container);
-        }
-    }
-
-
-
-    private async Task HandleValidSubmit()
-    {
-        try
-        {
-            User user = new User
-
-            {
-                Age = rUser.Age,
-                Gender = rUser.Gender,
-                Student_eti = rUser.Student_eti,
-                Education = rUser.Education,
-                Started_at = rUser.Started_at,
-                Completed_at = DateTime.Now,
-                Result = new Result
-                {
-                    Score = currentScore
-                },
-                KnowledgeSource = new KnowledgeSource
-                {
-                    Source = knowledge.Source
-                },
-                Opinion = new Opinion
-                {
-                    CompulsoryVaccination = opinion.CompulsoryVaccination,
-                    OptionalVaccination = opinion.OptionalVaccination,
-                    CovidVaccination = opinion.CovidVaccination,
-                    CovidVacSafety = opinion.CovidVacSafety,
-                    DiseaseOrVaccine = opinion.DiseaseOrVaccine,
-                    InformationTrust = opinion.InformationTrust
-                },
-                History = new History
-                {
-                    Chickenpox = history.Chickenpox,
-                    Flu = history.Flu,
-                    HPV = history.HPV
-                }
-
-
-            };
-            message = "Sending the feedback";
-            var response = await Http.PostAsJsonAsync("http://localhost:7071/api/SubmitSurvey", user);
-            message = "Feedback stored in the destination";
-
-        }
-        catch (Exception ex)
-        {
-            message = "Failed to store your feedback";
-        }
     }
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime js { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }

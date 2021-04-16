@@ -1068,10 +1068,7 @@ C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\PROJEKT
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\PROJEKT.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\PROJEKT.RazorComponent.input.cache
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
-C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\RazorDeclaration\Pages\Card.razor.g.cs
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
-C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\RazorDeclaration\Pages\SQLTest.razor.g.cs
-C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\RazorDeclaration\Pages\Test.razor.g.cs
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\RazorDeclaration\Share\MainLayout.razor.g.cs
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\PROJEKT.RazorComponent.output.cache
@@ -1080,10 +1077,7 @@ C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\PROJEKT
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\PROJEKT.TagHelpers.output.cache
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\PROJEKT.RazorCoreGenerate.cache
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\Razor\App.razor.g.cs
-C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\Razor\Pages\Card.razor.g.cs
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
-C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\Razor\Pages\SQLTest.razor.g.cs
-C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\Razor\Pages\Test.razor.g.cs
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\Razor\Share\MainLayout.razor.g.cs
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\build-gz\CyYsdhVl.gz
@@ -2603,3 +2597,7 @@ C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\obj\Debug\net5.0\PROJEKT.cs
 C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\obj\Debug\net5.0\PROJEKT.dll
 C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\obj\Debug\net5.0\ref\PROJEKT.dll
 C:\Users\LudwigVanWanna\source\repos\PROJEKT\PROJEKT\obj\Debug\net5.0\PROJEKT.pdb
+C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\RazorDeclaration\Pages\Results.razor.g.cs
+C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\Razor\Pages\Results.razor.g.cs
+C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\RazorDeclaration\Pages\Survey.razor.g.cs
+C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\obj\Debug\net5.0\Razor\Pages\Survey.razor.g.cs

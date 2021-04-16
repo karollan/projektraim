@@ -330,27 +330,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LudwigVanWanna\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Moriator\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\Shared\\Shared.csproj",
+      "projectUniqueName": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\Shared\\Shared.csproj",
       "projectName": "Shared",
-      "projectPath": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\Shared\\Shared.csproj",
-      "packagesPath": "C:\\Users\\LudwigVanWanna\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LudwigVanWanna\\source\\repos\\PROJEKT\\Shared\\obj\\",
+      "projectPath": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\Shared\\Shared.csproj",
+      "packagesPath": "C:\\Users\\Moriator\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Moriator\\source\\repos\\projektraim-main\\Shared\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\LudwigVanWanna\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Moriator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.1"
