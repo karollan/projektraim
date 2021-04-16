@@ -119,7 +119,7 @@ using C5;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Index.razor"
+#line 44 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Index.razor"
        
     public void survey()
     {
