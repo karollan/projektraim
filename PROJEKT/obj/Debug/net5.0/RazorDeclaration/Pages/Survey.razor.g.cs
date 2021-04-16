@@ -133,7 +133,7 @@ using FormModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 754 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Survey.razor"
+#line 757 "C:\Users\Moriator\source\repos\projektraim-main\PROJEKT\Pages\Survey.razor"
        
     int quizQuestions = 15;
     private ElementReference container;
@@ -271,7 +271,7 @@ using FormModels;
 
 
             };
-            var response = await Http.PostAsJsonAsync("http://localhost:7071/api/SubmitSurvey", user);
+            var response = await Http.PostAsJsonAsync("/api/SubmitSurvey", user);
 
         }
         catch (Exception ex)

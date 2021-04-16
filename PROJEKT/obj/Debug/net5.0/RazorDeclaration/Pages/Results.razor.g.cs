@@ -162,7 +162,7 @@ using System.Collections.Generic;
                     try
                     {
                         message = "Pobieram wyniki z bazy danych";
-                        Scores = await Http.GetFromJsonAsync<List<Data>>("http://localhost:7071/api/GetTestScores");
+                        Scores = await Http.GetFromJsonAsync<List<Data>>("/api/GetTestScores");
                         message = "Scores displayed";
                     }
                     catch (Exception ex)
